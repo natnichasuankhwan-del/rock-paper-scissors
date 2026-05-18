@@ -34,18 +34,15 @@ if ($action === 'play') {
     $human    = (int)($_GET['choice'] ?? 0);
     $computer = rand(0, 2);
     $result   = check($computer, $human);
-    $output   = "Human = {$names[$human]} "
-              . "Computer = {$names[$computer]} "
-              . "Result = $result";
+    $output = "Human={$names[$human]} Computer={$names[$computer]} Result=$result";
+
 }
 
 if ($action === 'test') {
     for ($c = 0; $c < 3; $c++) {
         for ($h = 0; $h < 3; $h++) {
             $r = check($c, $h);
-            $output .= "Human={$names[$h]} "
-                    .  "Computer={$names[$c]} "
-                    .  "Result=$r\n";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
         }
     }
 }
@@ -68,7 +65,7 @@ if ($action === 'test') {
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
-    <p>Welcome: <?= htmlspecialchars($who) ?></p>
+    <p>Welcome: <?= htmlentities($who) ?></p>
 
     <form method="GET" action="game.php">
         <select name="choice">
@@ -81,8 +78,8 @@ if ($action === 'test') {
         <button type="submit" name="action" value="logout">Logout</button>
     </form>
 
-    <?php if ($output): ?>
-        <pre><?= htmlspecialchars($output) ?></pre>
+    <?php if ($output !== ''): ?>
+        <pre><?= htmlentities($output) ?></pre>
     <?php endif; ?>
 </body>
 </html>
