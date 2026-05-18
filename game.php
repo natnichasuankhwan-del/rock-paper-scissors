@@ -40,7 +40,7 @@ if ($action === 'test') {
     for ($c = 0; $c < 3; $c++) {
         for ($h = 0; $h < 3; $h++) {
             $r = check($c, $h);
-            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r \n";
         }
     }
 }
