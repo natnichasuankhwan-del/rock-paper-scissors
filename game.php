@@ -3,7 +3,8 @@ ob_start();
 session_start();
 
 if ( ! isset($_SESSION['name']) ) {
-    die("Logged in first");
+    header('Location: index.php');
+    exit();
 }
 
 $who = $_SESSION['name'];
