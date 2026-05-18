@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($who) || empty($pass)) {
         $error = 'Must provide username and password';
     } else {
-        $input_hash = hash('md5', $salt . $pass);
+        $input_hash = md5($salt . $pass);
         if ($input_hash !== $stored_hash) {
             $error = 'Incorrect password';
         } else {
@@ -50,12 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2><a href="login.php">Please Log In</a></h2>
 
     <?php if ($error): ?>
-        <p class="error"><?= htmlspecialchars($error) ?></p>
+        <p class="error"><?= htmlentities($error) ?></p>
     <?php endif; ?>
 
     <form method="POST" action="login.php">
         <label>Name: <input type="text"     name="who"  
-               value="<?= htmlspecialchars($_POST['who'] ?? '') ?>"></label>
+               value="<?= htmlentities($_POST['who'] ?? '') ?>"
         <label>Password: <input type="password" name="pass"></label>
         <button type="submit">Log In</button>
     </form>
