@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <label>Name: <input type="text"     name="who"  
                value="<?= htmlspecialchars($_POST['who'] ?? '') ?>"></label>
         <label>Password: <input type="password" name="pass"></label>
-        <button type="submit">เข้าสู่ระบบ</button>
+        <button type="submit">Log In</button>
     </form>
 </body>
 </html>
