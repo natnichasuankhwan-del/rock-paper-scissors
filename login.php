@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
-    <h2>Please Log In</h2>
+    <h2><a href="login.php">Please Log In</a></h2>
 
     <?php if ($error): ?>
         <p class="error"><?= htmlspecialchars($error) ?></p>
