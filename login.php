@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass = $_POST['pass'] ?? '';
 
     if (empty($who) || empty($pass)) {
-        $error = 'ต้องใช้ชื่อผู้ใช้และรหัสผ่าน';
+        $error = 'Must provide username and password';
     } else {
         $input_hash = hash('md5', $salt . $pass);
         if ($input_hash !== $stored_hash) {
-            $error = 'รหัสผ่านไม่ถูกต้อง';
+            $error = 'Incorrect password';
         } else {
             $_SESSION['who'] = $who;
             header('Location: game.php?who=' . urlencode($who));

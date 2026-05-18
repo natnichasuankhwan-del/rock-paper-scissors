@@ -75,9 +75,9 @@ if ($action === 'test') {
             <option value="1">Paper</option>
             <option value="2">Scissors</option>
         </select>
-        <button type="submit" name="action" value="play">เล่น</button>
-        <button type="submit" name="action" value="test">ทดสอบ</button>
-        <button type="submit" name="action" value="logout">ออกจากระบบ</button>
+        <button type="submit" name="action" value="play">Play</button>
+        <button type="submit" name="action" value="test">Test</button>
+        <button type="submit" name="action" value="logout">Logout</button>
     </form>
 
     <?php if ($output): ?>
