@@ -2,15 +2,13 @@
 ob_start();
 session_start();
 
-// ตรวจสอบ session
-if (!isset($_SESSION['who'])) {
-    die('Missing session parameter');
+if (!isset($_SESSION['name'])) {
+    die('Logged in first');
 }
 
-$who = $_SESSION['who'];
+$who = $_SESSION['name'];
 $names = ['Rock', 'Paper', 'Scissors'];
 
-// ฟังก์ชัน check - คำนวณผลการเล่น
 function check($computer, $human) {
     if ($computer === $human) return 'Tie';
     if (($human === 0 && $computer === 2) ||
@@ -34,15 +32,15 @@ if ($action === 'play') {
     $human    = (int)($_GET['choice'] ?? 0);
     $computer = rand(0, 2);
     $result   = check($computer, $human);
+    
     $output = "Human={$names[$human]} Computer={$names[$computer]} Result=$result";
-
 }
 
 if ($action === 'test') {
     for ($c = 0; $c < 3; $c++) {
         for ($h = 0; $h < 3; $h++) {
             $r = check($c, $h);
-            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r \n";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
         }
     }
 }
@@ -51,19 +49,9 @@ if ($action === 'test') {
 <html>
 <head>
     <title>Rock Paper Scissors bde4e71c</title>
-    <style>
-        body { font-family: Arial, sans-serif; padding: 40px; }
-        h1   { font-size: 2em; }
-        pre  { background: #f0f0f0; padding: 16px; 
-               border: 1px solid #ccc; }
-        select, button { 
-            padding: 6px 14px; 
-            font-size: 1em; 
-            margin-right: 6px; 
-        }
-    </style>
 </head>
 <body>
+<div class="container">
     <h1>Rock Paper Scissors</h1>
     <p>Welcome: <?= htmlentities($who) ?></p>
 
@@ -81,5 +69,6 @@ if ($action === 'test') {
     <?php if ($output !== ''): ?>
         <pre><?= htmlentities($output) ?></pre>
     <?php endif; ?>
+</div>
 </body>
 </html>
