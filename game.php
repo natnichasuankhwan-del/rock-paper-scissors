@@ -2,13 +2,11 @@
 ob_start();
 session_start();
 
-// รองรับทั้งแบบเช็คจาก Session หรือจาก GET parameter ที่ Autograder มักจะแอบส่งมาตรวจ
-if ( ! isset($_SESSION['name']) && ! isset($_GET['name']) ) {
+if ( ! isset($_SESSION['name']) ) {
     die("Logged in first");
 }
 
-// ดึงชื่อมาแสดงผล
-$who = $_SESSION['name'] ?? $_GET['name'] ?? 'Guest';
+$who = $_SESSION['name'];
 $names = array('Rock', 'Paper', 'Scissors');
 
 function check($computer, $human) {
@@ -16,7 +14,7 @@ function check($computer, $human) {
         return "Tie";
     } else if ( ($human == 0 && $computer == 2) ||
                 ($human == 1 && $computer == 0) ||
-                ($human == 2 && $computer == 1) ) {
+                ($human == 2 && $computer === 1) ) {
         return "Win";
     } else {
         return "Lose";
