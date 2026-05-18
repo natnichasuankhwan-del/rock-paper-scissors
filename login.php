@@ -1,5 +1,5 @@
 <?php
-ob_start()
+ob_start();
 session_start();
 
 $salt = 'Xyzzy12*_';
