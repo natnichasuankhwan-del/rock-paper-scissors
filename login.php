@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rock Paper Scissors - Login</title>
+    <title>Rock Paper Scissors bde4e71c</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 40px; }
         h1   { font-size: 2em; }

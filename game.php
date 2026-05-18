@@ -52,7 +52,7 @@ if ($action === 'test') {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rock Paper Scissors</title>
+    <title>Rock Paper Scissors bde4e71c</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 40px; }
         h1   { font-size: 2em; }
