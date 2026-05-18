@@ -1,8 +1,10 @@
 <?php
+ob_start()
 session_start();
 
 $salt = 'Xyzzy12*_';
-$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1';
+$stored_hash = md5($salt . 'php123');
+
 
 $error = '';
 
