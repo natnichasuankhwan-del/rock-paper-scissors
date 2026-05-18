@@ -4,7 +4,7 @@ session_start();
 
 // ตรวจสอบ session
 if (!isset($_SESSION['who'])) {
-    die('พารามิเตอร์ชื่อหายไป');
+    die('Missing session parameter');
 }
 
 $who = $_SESSION['who'];
@@ -12,13 +12,13 @@ $names = ['Rock', 'Paper', 'Scissors'];
 
 // ฟังก์ชัน check - คำนวณผลการเล่น
 function check($computer, $human) {
-    if ($computer === $human) return 'เน็คไท';
+    if ($computer === $human) return 'Tie';
     if (($human === 0 && $computer === 2) ||
         ($human === 1 && $computer === 0) ||
         ($human === 2 && $computer === 1)) {
-        return 'คุณชนะ';
+        return 'Win';
     }
-    return 'คุณแพ้';
+    return 'Lose';
 }
 
 $output = '';
@@ -34,9 +34,9 @@ if ($action === 'play') {
     $human    = (int)($_GET['choice'] ?? 0);
     $computer = rand(0, 2);
     $result   = check($computer, $human);
-    $output   = "การเล่นของคุณ = {$names[$human]} "
-              . "คอมพิวเตอร์ = {$names[$computer]} "
-              . "ผลลัพธ์ = $result";
+    $output   = "Human = {$names[$human]} "
+              . "Computer = {$names[$computer]} "
+              . "Result = $result";
 }
 
 if ($action === 'test') {
