@@ -16,13 +16,14 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
         $error = "User name and password are required";
     } else {
         $check = hash('md5', $salt . $_POST['pass']);
+        echo "Check: " . $check;
         if ($check === $stored_hash) {
         session_regenerate_id(true);
         $_SESSION['who'] = $_POST['who'];
         header("Location: game.php?who=" . urlencode($_POST['who']));
         exit();
-        } else {
-            $error = "Incorrect password";
+    } else {
+        $error = "Incorrect password";
         }
     }
 }
