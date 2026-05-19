@@ -3,7 +3,7 @@ ob_start();
 session_start();
 
 if (isset($_SESSION['who'])) {
-    header('Location: game.php?who=' . urlencode($_SESSION['who']));
+    header("Location: game.php?who=" . urlencode($_SESSION['who']));
     exit();
 }
 
@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Incorrect password';
         } else {
             $_SESSION['who'] = $who;
-            header('Location: game.php?who=' . urlencode($who));
+            header("Location: game.php?who=" . urlencode($who));
             exit();
         }
     }
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div class="container">
     <h1>Rock Paper Scissors</h1>
-    <h2>Please Log In</h2>
+    <h2><a href="login.php">Please Log In</a></h2>
 
     <?php if ($error != ''): ?>
         <p style="color: red;"><?= htmlentities($error) ?></p>
