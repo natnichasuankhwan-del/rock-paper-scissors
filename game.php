@@ -11,7 +11,6 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Logout' ) {
 }
 
 // Set up the values for the game
-// 0 is Rock, 1 is Paper, 2 is Scissors
 $names = array('Rock', 'Paper', 'Scissors');
 $human = isset($_GET['human']) ? $_GET['human']+0 : -1;
 
