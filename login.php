@@ -1,32 +1,15 @@
 <?php
-ob_start();
-session_start();
-
-if (isset($_SESSION['who'])) {
-    header("Location: game.php?who=" . urlencode($_SESSION['who']));
+if (isset($_GET['cancel'])) {
+    header("Location: index.php");
     exit();
 }
 
-$salt = 'Xyzzy12*_';
-$stored_hash = md5($salt . 'php123');
-
-$error = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $who  = $_POST['who']  ?? '';
-    $pass = $_POST['pass'] ?? '';
-
-    if (strlen($who) < 1 || strlen($pass) < 1) {
-        $error = 'User name and password are required';
+if (isset($_GET['who'])) {
+    if (strlen($_GET['who']) < 1) {
+        $error = "Name parameter missing";
     } else {
-        $input_hash = md5($salt . $pass);
-        if ($input_hash !== $stored_hash) {
-            $error = 'Incorrect password';
-        } else {
-            $_SESSION['who'] = $who;
-            header("Location: game.php");
-            exit();
-        }
+        header("Location: game.php?who=" . urlencode($_GET['who']));
+        exit();
     }
 }
 ?>
@@ -37,17 +20,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 <div class="container">
-    <h1>Rock Paper Scissors</h1>
-    <h2><a href="login.php">Please Log In</a></h2>
-
-    <?php if ($error != ''): ?>
-        <p style="color: red;"><?= htmlentities($error) ?></p>
+    <h1>Please Log In</h1>
+    <?php if (isset($error)) : ?>
+        <p style="color:red;"><?= htmlentities($error) ?></p>
     <?php endif; ?>
-
-    <form method="POST" action="login.php">
-        <label>Name: <input type="text" name="who" value="<?= htmlentities($_POST['who'] ?? '') ?>"></label>
-        <label>Password: <input type="password" name="pass"></label>
-        <button type="submit">Log In</button>
+    <form method="GET" action="login.php">
+        <label for="who">Name:</label>
+        <input type="text" name="who" id="who">
+        <input type="submit" value="Login">
+        <input type="submit" name="cancel" value="Cancel">
     </form>
 </div>
 </body>
