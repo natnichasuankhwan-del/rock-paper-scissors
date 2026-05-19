@@ -2,7 +2,10 @@
 ob_start();
 session_start();
 
-$who = $_GET["who"] ?? $_SESSION["name"] ?? "guest";
+if (!isset($_SESSION['who']) && !isset($_GET['who'])) {
+    die('Missing session parameter');
+}
+$who = $_SESSION['who'] ?? $_GET['who'];
 $names = array("Rock", "Paper", "Scissors");
 
 function check($computer, $human) {
@@ -37,8 +40,7 @@ if ( $action === "test" ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r
-";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
         }
     }
 }
