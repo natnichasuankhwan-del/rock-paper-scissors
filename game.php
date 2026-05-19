@@ -64,9 +64,9 @@ if ( $action === "test" ) {
             <option value="1">Paper</option>
             <option value="2">Scissors</option>
         </select>
-        <button type="submit" name="action" value="play">Play</button>
-        <button type="submit" name="action" value="test">Test</button>
-        <button type="submit" name="action" value="logout">Logout</button>
+        <input type="submit" name="action" value="Play">
+        <input type="submit" name="action" value="Test">
+        <input type="submit" name="action" value="Logout">
     </form>
     <?php if ( $output !== "" ) : ?>
         <pre><?= htmlentities($output) ?></pre>
