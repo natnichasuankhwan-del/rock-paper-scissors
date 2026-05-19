@@ -37,14 +37,14 @@ if ( $action === "play" ) {
     $human = (int)$_GET["choice"];
     $computer = rand(0,2);
     $result = check($computer, $human);
-    $output = "Human={$names[$human]} Computer={$names[$computer]} Result=$result";
+    $output = "Human = {$names[$human]} Computer = {$names[$computer]} Result = $result";
 }
 
 if ( $action === "test" ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
+            $output .= "Human = {$names[$h]} Computer = {$names[$cc]} Result = $r\n";
         }
     }
 }
