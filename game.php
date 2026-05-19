@@ -1,7 +1,7 @@
 <?php
-// แก้ไขจุดนี้: เปลี่ยนข้อความเมื่อไม่มีชื่อ ให้เป็นคำว่า Please log in first. ตามเกณฑ์ Autograder
+// Demand a GET parameter
 if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1 ) {
-    die('Please log in first.');
+    die("Please log in first.");
 }
 
 // If the user requests logout go back to index.php
@@ -48,8 +48,8 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            // หน้า Test ใช้ฟอร์免ต Human= แบบติดกัน
-            $output .= "Human=" . $names[$h] . " Computer=" . $names[$c] . " Result=" . $r . "\n";
+            // ปรับช่องไฟตรงนี้ให้มีเว้นวรรคหน้า-หลังเครื่องหมาย = เป๊ะ ๆ ตามที่บอทของระบบตรวจจับ
+            $output .= "Human = " . $names[$h] . " Computer = " . $names[$c] . " Result = " . $r . "\n";
         }
     }
 }
