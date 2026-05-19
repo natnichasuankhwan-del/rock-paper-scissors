@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ambika Patidar</title>
+<title>Natnicha Suankhwan bde4e71c</title>
 <?php include "bootstrap.php"; ?>
 </head>
 <body>
