@@ -27,20 +27,20 @@ function check($computer, $human) {
 $output = "";
 $action = $_GET["action"] ?? "";
 
-if ( $action === "logout" ) {
+if ( $action === "Logout" ) {
     session_destroy();
     header("Location: index.php");
     exit();
 }
 
-if ( $action === "play" ) {
+if ( $action === "Play" ) {
     $human = (int)$_GET["choice"];
     $computer = rand(0,2);
     $result = check($computer, $human);
     $output = "Human = {$names[$human]} Computer = {$names[$computer]} Result = $result";
 }
 
-if ( $action === "test" ) {
+if ( $action === "Test" ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
