@@ -1,29 +1,25 @@
-<?php
-session_start();
+<?php // Do not put any HTML before this line
+unset($_POST['who']); 
+unset($_POST['pass']);
 
-$salt = 'Xyzzy12';
-$stored_hash = '1a52e17fa899cf40fb04cf42e6352f1'; // md5 of Xyzzy12php123
+$salt = 'XyZzy12*_';
+$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1'; // คือ md5 ของ 'XyZzy12*_' . 'php123'
 
-if (isset($_POST['cancel'])) {
-    header("Location: index.php");
-    exit();
-}
+$failure = false;  // If we have no POST data
 
-$error = false;
-
-if (isset($_POST['who']) && isset($_POST['pass'])) {
-    if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
-        $error = "User name and password are required";
+if ( isset($_POST['who']) && isset($_POST['pass']) ) {
+    if ( strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1 ) {
+        $failure = "User name and password are required";
+    } else if ( strpos($_POST['who'], '@') === false ) {
+        $failure = "Email must have an at-sign (@)";
     } else {
-        $check = hash('md5', $salt . $_POST['pass']);
-        echo "Check: " . $check;
-        if ($check === $stored_hash) {
-        session_regenerate_id(true);
-        $_SESSION['who'] = $_POST['who'];
-        header("Location: game.php?who=" . urlencode($_POST['who']));
-        exit();
-    } else {
-        $error = "Incorrect password";
+        $check = md5($salt.$_POST['pass']);
+        if ( $check == $stored_hash ) {
+            // Redirect the browser to game.php
+            header("Location: game.php?name=" . urlencode($_POST['who']));
+            return;
+        } else {
+            $failure = "Incorrect password";
         }
     }
 }
@@ -31,22 +27,25 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Rock Paper Scissors bde4e71c</title>
+<title>Rock Paper Scissors bde4e71c</title>
+<?php require_once "bootstrap.php"; ?>
 </head>
 <body>
 <div class="container">
-    <h1>Please Log In</h1>
-    <?php if ($error !== false) : ?>
-        <p style="color:red;"><?= htmlentities($error) ?></p>
-    <?php endif; ?>
-    <form method="POST" action="login.php">
-        <label for="who">Name:</label>
-        <input type="text" name="who" id="who">
-        <label for="pass">Password:</label>
-        <input type="password" name="pass" id="pass">
-        <input type="submit" value="Log In">
-        <input type="submit" name="cancel" value="Cancel">
-    </form>
+<h1>Please Log In</h1>
+<?php
+if ( $failure !== false ) {
+    echo('<p style="color: red;">'.htmlentities($failure)."</p>\n");
+}
+?>
+<form method="POST">
+<label Liked for="nam">User Name</label>
+<input type="text" name="who" id="nam"><br/>
+<label for="id_1725">Password</label>
+<input type="password" name="pass" id="id_1725"><br/>
+<input type="submit" value="Log In">
+<input type="submit" name="cancel" value="Cancel">
+</form>
 </div>
 </body>
 </html>
