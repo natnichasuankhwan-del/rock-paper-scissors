@@ -17,10 +17,10 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
     } else {
         $check = hash('md5', $salt . $_POST['pass']);
         if ($check === $stored_hash) {
-            session_regenerate_id(true);
-            $_SESSION['who'] = $_POST['who'];
-            header("Location: game.php?who=" . urlencode($_POST['who']));
-            exit();
+        session_regenerate_id(true);
+        $_SESSION['who'] = $_POST['who'];
+        header("Location: game.php?who=" . urlencode($_POST['who']));
+        exit();
         } else {
             $error = "Incorrect password";
         }
