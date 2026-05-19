@@ -1,7 +1,7 @@
 <?php
-// Demand a GET parameter
+// แก้ไขจุดนี้: เปลี่ยนข้อความเมื่อไม่มีชื่อ ให้เป็นคำว่า Please log in first. ตามเกณฑ์ Autograder
 if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1 ) {
-    die('Name parameter missing');
+    die('Please log in first.');
 }
 
 // If the user requests logout go back to index.php
@@ -41,7 +41,6 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     } else {
         $computer = rand(0,2);
         $result = check($computer, $human);
-        // หน้า Play: รูปแบบติดกัน ไม่มีเว้นวรรครอบเครื่องหมายเท่ากับ
         $output = "Your Play=" . $names[$human] . " Computer=" . $names[$computer] . " Result=" . $result;
     }
 } else if ( isset($_GET['action']) && $_GET['action'] == 'Test' ) {
@@ -49,8 +48,8 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            // หน้า Test: บังคับใช้คำว่า Human และ "มีเว้นวรรค" หน้า-หลังเครื่องหมายเท่ากับทุกตัวตามที่ Log ค้นหา
-            $output .= "Human = " . $names[$h] . " Computer = " . $names[$c] . " Result = " . $r . "\n";
+            // หน้า Test ใช้ฟอร์免ต Human= แบบติดกัน
+            $output .= "Human=" . $names[$h] . " Computer=" . $names[$c] . " Result=" . $r . "\n";
         }
     }
 }
