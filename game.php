@@ -52,7 +52,7 @@ $result = check($computer, $human);
 <!DOCTYPE html>
 <html>
 <head>
-<title>Ambika Patidar</title>
+<title>Natnicha bde4e71c</title>
 <?php require_once "bootstrap.php"; ?>
 </head>
 <body>
