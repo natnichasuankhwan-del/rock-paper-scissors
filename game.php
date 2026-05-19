@@ -48,8 +48,7 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            // แก้ไขตรงนี้: เอาเว้นวรรครอบเครื่องหมายเท่ากับออกให้หมด ให้เป็น Human= ติดกันตามที่ระบบตรวจจับ
-            $output .= "Human=" . $names[$h] . " Computer=" . $names[$c] . " Result=" . $r . "\n";
+            $output .= "Your Play=" . $names[$h] . " Computer=" . $names[$c] . " Result=" . $r . "\n";
         }
     }
 }
