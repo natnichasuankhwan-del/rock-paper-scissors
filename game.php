@@ -55,16 +55,16 @@ if ($action === "Test") {
     <h1>Rock Paper Scissors bde4e71c</h1>
     <p>Welcome, <?= htmlentities($who) ?></p>
     <form method="GET" action="game.php">
-        <input type="hidden" name="who" value="<?= htmlentities($who) ?>">
-        <select name="choice">
-            <option value="0">Rock</option>
-            <option value="1">Paper</option>
-            <option value="2">Scissors</option>
-        </select>
-        <input type="submit" name="action" value="Play">
-        <input type="submit" name="action" value="Test">
-        <input type="submit" name="action" value="Logout">
-    </form>
+    <input type="hidden" name="who" value="<?= htmlentities($who) ?>">
+    <select name="choice">
+        <option value="0">Rock</option>
+        <option value="1">Paper</option>
+        <option value="2">Scissors</option>
+    </select>
+    <input type="submit" name="action" value="Play">
+    <input type="submit" name="action" value="Test">
+    <input type="submit" name="action" value="Logout">
+</form>
     <?php if ($output !== "") : ?>
         <pre><?= htmlentities($output) ?></pre>
     <?php endif; ?>
