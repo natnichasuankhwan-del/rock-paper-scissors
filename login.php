@@ -1,11 +1,13 @@
 <?php // Do not put any HTML before this line
-unset($_POST['who']); 
-unset($_POST['pass']);
+if ( isset($_POST['cancel']) ) {
+    header("Location: index.php");
+    return;
+}
 
 $salt = 'XyZzy12*_';
-$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1'; // คือ md5 ของ 'XyZzy12*_' . 'php123'
+$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1'; // md5 ของ 'XyZzy12*_' . 'php123'
 
-$failure = false;  // If we have no POST data
+$failure = false;
 
 if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     if ( strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1 ) {
@@ -15,7 +17,6 @@ if ( isset($_POST['who']) && isset($_POST['pass']) ) {
     } else {
         $check = md5($salt.$_POST['pass']);
         if ( $check == $stored_hash ) {
-            // Redirect the browser to game.php
             header("Location: game.php?name=" . urlencode($_POST['who']));
             return;
         } else {
@@ -39,7 +40,7 @@ if ( $failure !== false ) {
 }
 ?>
 <form method="POST">
-<label Liked for="nam">User Name</label>
+<label for="nam">User Name</label>
 <input type="text" name="who" id="nam"><br/>
 <label for="id_1725">Password</label>
 <input type="password" name="pass" id="id_1725"><br/>
