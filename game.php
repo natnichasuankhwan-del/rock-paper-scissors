@@ -55,8 +55,8 @@ if ( $action === "test" ) {
 </head>
 <body>
 <div class="container">
-    <h1>Rock Paper Scissors</h1>
-    <p><b>Welcome:</b> <?= htmlentities($who) ?></p>
+    <h1>Rock Paper Scissors bde4e71c</h1> 
+    <p>Welcome, <?= htmlentities($who) ?></p>
     <form method="GET" action="game.php">
         <input type="hidden" name="who" value="<?= htmlentities($who) ?>">
         <select name="choice">
