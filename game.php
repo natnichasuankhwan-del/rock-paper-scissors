@@ -1,16 +1,20 @@
 <?php
+// Demand a GET parameter
 if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1 ) {
     die('Name parameter missing');
 }
 
+// If the user requests logout go back to index.php
 if ( isset($_GET['action']) && $_GET['action'] == 'Logout' ) {
     header('Location: index.php');
     return;
 }
 
+// Set up the values for the game
 $names = array('Rock', 'Paper', 'Scissors');
 $human = isset($_GET['human']) ? $_GET['human']+0 : -1;
 
+// Function to check who wins
 function check($computer, $human) {
     if ( $human == $computer ) {
         return "Tie";
@@ -33,18 +37,18 @@ function check($computer, $human) {
 $output = false;
 if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     if ( $human == -1 ) {
-        $output = "Error=Please select a strategy and press Play";
+        $output = "Please select a strategy and press Play";
     } else {
         $computer = rand(0,2);
         $result = check($computer, $human);
-        $output = "Human = {$names[$human]} Computer = {$names[$computer]} Result = $result";
+        $output = "Your Play={$names[$human]} Computer={$names[$computer]} Result=$result";
     }
 } else if ( isset($_GET['action']) && $_GET['action'] == 'Test' ) {
     $output = "";
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            $output .= "Human = {$names[$h]} Computer = {$names[$c]} Result = $r\n";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
         }
     }
 }
