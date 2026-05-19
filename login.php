@@ -27,7 +27,7 @@ if (isset($_GET['who'])) {
     <form method="GET" action="login.php">
         <label for="who">Name:</label>
         <input type="text" name="who" id="who">
-        <input type="submit" value="Login">
+        <input type="submit" value="Log In">
         <input type="submit" name="cancel" value="Cancel">
     </form>
 </div>
