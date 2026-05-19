@@ -53,7 +53,7 @@ if ( $action === "test" ) {
 <div class="container">
     <h1>Rock Paper Scissors</h1>
     <p>Welcome: <?= htmlentities($who) ?></p>
-    <form method="GET" action="game.php">
+    <form method="GET" action="game.php?who=<?= htmlentities($who) ?>">
         <select name="choice">
             <option value="0">Rock</option>
             <option value="1">Paper</option>
