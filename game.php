@@ -1,29 +1,28 @@
 <?php
-ob_start();
 session_start();
 
-if (isset($_GET['who'])) {
-    $_SESSION['who'] = $_GET['who'];
-}
 if (!isset($_SESSION['who'])) {
     die('Missing name parameter');
 }
 
-$who = $_SESSION['who'];
+$who = htmlentities($_SESSION['who']);
 $names = array("Rock", "Paper", "Scissors");
 
 function check($computer, $human) {
     if ($computer == $human) return "Tie";
-    else if (($human == 0 && $computer == 2) ||
-             ($human == 1 && $computer == 0) ||
-             ($human == 2 && $computer == 1)) return "Win";
-    else return "Lose";
+    if (($human == 0 && $computer == 2) ||
+        ($human == 1 && $computer == 0) ||
+        ($human == 2 && $computer == 1)) {
+        return "Win";
+    }
+    return "Lose";
 }
 
 $output = "";
 $action = $_GET['action'] ?? "";
 
 if ($action === "Logout") {
+    $_SESSION = array();
     session_destroy();
     header("Location: index.php");
     exit();
@@ -53,18 +52,18 @@ if ($action === "Test") {
 <body>
 <div class="container">
     <h1>Rock Paper Scissors bde4e71c</h1>
-    <p>Welcome, <?= htmlentities($who) ?></p>
+    <p>Welcome, <?= $who ?></p>
     <form method="GET" action="game.php">
-    <input type="hidden" name="who" value="<?= htmlentities($who) ?>">
-    <select name="choice">
-        <option value="0">Rock</option>
-        <option value="1">Paper</option>
-        <option value="2">Scissors</option>
-    </select>
-    <input type="submit" name="action" value="Play">
-    <input type="submit" name="action" value="Test">
-    <input type="submit" name="action" value="Logout">
-</form>
+        <input type="hidden" name="who" value="<?= $who ?>">
+        <select name="choice">
+            <option value="0">Rock</option>
+            <option value="1">Paper</option>
+            <option value="2">Scissors</option>
+        </select>
+        <input type="submit" name="action" value="Play">
+        <input type="submit" name="action" value="Test">
+        <input type="submit" name="action" value="Logout">
+    </form>
     <?php if ($output !== "") : ?>
         <pre><?= htmlentities($output) ?></pre>
     <?php endif; ?>

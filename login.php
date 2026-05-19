@@ -1,15 +1,29 @@
 <?php
-if (isset($_GET['cancel'])) {
+session_start();
+
+$salt = 'Xyzzy12';
+$stored_hash = '1a52e17fa899cf40fb04cf42e6352f1'; // md5 of Xyzzy12php123
+
+if (isset($_POST['cancel'])) {
     header("Location: index.php");
     exit();
 }
 
-if (isset($_GET['who'])) {
-    if (strlen($_GET['who']) < 1) {
-        $error = "Name parameter missing";
+$error = false;
+
+if (isset($_POST['who']) && isset($_POST['pass'])) {
+    if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
+        $error = "ต้องใช้ชื่อผู้ใช้และรหัสผ่าน";
     } else {
-        header("Location: game.php?who=" . urlencode($_GET['who']));
-        exit();
+        $check = hash('md5', $salt . $_POST['pass']);
+        if ($check === $stored_hash) {
+            session_regenerate_id(true); // ป้องกัน session fixation
+            $_SESSION['who'] = $_POST['who'];
+            header("Location: game.php?who=" . urlencode($_POST['who']));
+            exit();
+        } else {
+            $error = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+        }
     }
 }
 ?>
@@ -21,19 +35,17 @@ if (isset($_GET['who'])) {
 <body>
 <div class="container">
     <h1>Please Log In</h1>
-    <?php if (isset($error)) : ?>
+    <?php if ($error !== false) : ?>
         <p style="color:red;"><?= htmlentities($error) ?></p>
     <?php endif; ?>
     <form method="POST" action="login.php">
-    <label for="who">Name:</label>
-    <input type="text" name="who" id="who">
-
-    <label for="pass">Password:</label>
-    <input type="password" name="pass" id="pass">
-
-    <input type="submit" value="Log In">
-    <input type="submit" name="cancel" value="Cancel">
-</form>
+        <label for="who">Name:</label>
+        <input type="text" name="who" id="who">
+        <label for="pass">Password:</label>
+        <input type="password" name="pass" id="pass">
+        <input type="submit" value="Log In">
+        <input type="submit" name="cancel" value="Cancel">
+    </form>
 </div>
 </body>
 </html>
