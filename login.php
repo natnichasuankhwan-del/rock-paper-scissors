@@ -2,8 +2,8 @@
 ob_start();
 session_start();
 
-if (isset($_SESSION['name'])) {
-    header('Location: game.php');
+if (isset($_SESSION['who'])) {
+    header('Location: game.php?who=' . urlencode($_SESSION['who']));
     exit();
 }
 
@@ -13,7 +13,7 @@ $stored_hash = md5($salt . 'php123');
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $who = $_POST['who'] ?? '';
+    $who  = $_POST['who']  ?? '';
     $pass = $_POST['pass'] ?? '';
 
     if (strlen($who) < 1 || strlen($pass) < 1) {
@@ -23,8 +23,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($input_hash !== $stored_hash) {
             $error = 'Incorrect password';
         } else {
-            $_SESSION['name'] = $who;
-            header('Location: game.php');
+            $_SESSION['who'] = $who;
+            header('Location: game.php?who=' . urlencode($who));
             exit();
         }
     }
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h1>Rock Paper Scissors</h1>
     <h2>Please Log In</h2>
 
-    <?php if ($error !== ''): ?>
+    <?php if ($error != ''): ?>
         <p style="color: red;"><?= htmlentities($error) ?></p>
     <?php endif; ?>
 
