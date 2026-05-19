@@ -2,10 +2,14 @@
 ob_start();
 session_start();
 
-if (!isset($_SESSION['who']) && !isset($_GET['who'])) {
+if (isset($_GET['who'])) {
+    $_SESSION['who'] = $_GET['who'];
+}
+
+if (!isset($_SESSION['who'])) {
     die('Missing session parameter');
 }
-$who = $_SESSION['who'] ?? $_GET['who'];
+$who = $_SESSION['who'];
 $names = array("Rock", "Paper", "Scissors");
 
 function check($computer, $human) {
@@ -53,7 +57,8 @@ if ( $action === "test" ) {
 <div class="container">
     <h1>Rock Paper Scissors</h1>
     <p>Welcome: <?= htmlentities($who) ?></p>
-    <form method="GET" action="game.php?who=<?= htmlentities($who) ?>">
+    <form method="GET" action="game.php">
+        <input type="hidden" name="who" value="<?= htmlentities($who) ?>">
         <select name="choice">
             <option value="0">Rock</option>
             <option value="1">Paper</option>
