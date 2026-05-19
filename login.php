@@ -24,12 +24,16 @@ if (isset($_GET['who'])) {
     <?php if (isset($error)) : ?>
         <p style="color:red;"><?= htmlentities($error) ?></p>
     <?php endif; ?>
-    <form method="GET" action="login.php">
-        <label for="who">Name:</label>
-        <input type="text" name="who" id="who">
-        <input type="submit" value="Log In">
-        <input type="submit" name="cancel" value="Cancel">
-    </form>
+    <form method="POST" action="login.php">
+    <label for="who">Name:</label>
+    <input type="text" name="who" id="who">
+
+    <label for="pass">Password:</label>
+    <input type="password" name="pass" id="pass">
+
+    <input type="submit" value="Log In">
+    <input type="submit" name="cancel" value="Cancel">
+</form>
 </div>
 </body>
 </html>
