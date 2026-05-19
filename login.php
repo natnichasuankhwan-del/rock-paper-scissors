@@ -13,16 +13,16 @@ $error = false;
 
 if (isset($_POST['who']) && isset($_POST['pass'])) {
     if (strlen($_POST['who']) < 1 || strlen($_POST['pass']) < 1) {
-        $error = "ต้องใช้ชื่อผู้ใช้และรหัสผ่าน";
+        $error = "User name and password are required";
     } else {
         $check = hash('md5', $salt . $_POST['pass']);
         if ($check === $stored_hash) {
-            session_regenerate_id(true); // ป้องกัน session fixation
+            session_regenerate_id(true);
             $_SESSION['who'] = $_POST['who'];
             header("Location: game.php?who=" . urlencode($_POST['who']));
             exit();
         } else {
-            $error = "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง";
+            $error = "Incorrect password";
         }
     }
 }
