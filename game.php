@@ -7,7 +7,7 @@ if (isset($_GET['who'])) {
 }
 
 if (!isset($_SESSION['who'])) {
-    die('Missing session parameter');
+    die('Missing name parameter');
 }
 $who = $_SESSION['who'];
 $names = array("Rock", "Paper", "Scissors");
