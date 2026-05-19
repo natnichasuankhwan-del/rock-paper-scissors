@@ -5,7 +5,7 @@ if ( isset($_POST['cancel']) ) {
 }
 
 $salt = 'XyZzy12*_';
-$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1'; // md5 ของ 'XyZzy12*_' . 'php123'
+$stored_hash = '1a52e17fa899cf40fb04cfc42e6352f1'; 
 
 $failure = false;
 

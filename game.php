@@ -1,20 +1,16 @@
 <?php
-// Demand a GET parameter
 if ( ! isset($_GET['name']) || strlen($_GET['name']) < 1 ) {
     die('Name parameter missing');
 }
 
-// If the user requests logout go back to index.php
 if ( isset($_GET['action']) && $_GET['action'] == 'Logout' ) {
     header('Location: index.php');
     return;
 }
 
-// Set up the values for the game
 $names = array('Rock', 'Paper', 'Scissors');
 $human = isset($_GET['human']) ? $_GET['human']+0 : -1;
 
-// Function to check who wins
 function check($computer, $human) {
     if ( $human == $computer ) {
         return "Tie";
