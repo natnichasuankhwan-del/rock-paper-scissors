@@ -25,7 +25,7 @@ function check($computer, $human) {
 }
 
 $output = "";
-$action = $_GET["action"] ?? "";
+$action = $_GET['action'] ?? "";
 
 if ( $action === "Logout" ) {
     session_destroy();
