@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error = 'Incorrect password';
         } else {
             $_SESSION['who'] = $who;
-            header("Location: game.php?who=" . urlencode($who));
+            header("Location: game.php");
             exit();
         }
     }
