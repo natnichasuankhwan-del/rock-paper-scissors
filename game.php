@@ -41,7 +41,7 @@ if ( $action === "Play" ) {
 }
 
 if ( $action === "Test" ) {
-    for($h=0; $h<3; $h++) {
+    for($h=0; $h<3; $h++) { 
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
             $output .= "Human = {$names[$h]} Computer = {$names[$c]} Result = $r\n";
