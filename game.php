@@ -41,15 +41,14 @@ if ( isset($_GET['action']) && $_GET['action'] == 'Play' ) {
     } else {
         $computer = rand(0,2);
         $result = check($computer, $human);
-        $output = "Your Play={$names[$human]} Computer={$names[$computer]} Result=$result";
+        $output = "Your Play={$names[$human]} Computer={$names[$computer]} Result=$result\n";
     }
 } else if ( isset($_GET['action']) && $_GET['action'] == 'Test' ) {
     $output = "";
     for($h=0; $h<3; $h++) {
         for($c=0; $c<3; $c++) {
             $r = check($c, $h);
-            // แก้ไขเพิ่มเว้นวรรคตรงนี้ให้ตรงตามที่ Autograder ตรวจสอบเป๊ะ ๆ ครับ
-            $output .= "Human = {$names[$h]} Computer = {$names[$c]} Result = $r\n";
+            $output .= "Human={$names[$h]} Computer={$names[$c]} Result=$r\n";
         }
     }
 }
